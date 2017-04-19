@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getTrending } from './api';
+import { getTrending, search } from './api';
 
 export default class Preview extends Component {
   constructor(props) {
@@ -11,8 +11,17 @@ export default class Preview extends Component {
   }
 
   componentDidMount() {
-    getTrending().then(results => 
-      this.setState({ gifs: results.data}));
+    getTrending().then(results => {
+      this.setState({ gifs: results.data});
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.searchTerm !== this.props.searchTerm) {
+      search(this.props.searchTerm).then(results => {
+        this.setState({ gifs: results.data});
+      });
+    }
   }
 
   render() {
@@ -25,7 +34,7 @@ export default class Preview extends Component {
     return (
       <ul>
         {gifs.map((gif, index) => 
-          <li>
+          <li key={index}>
             <img src={gif.images['fixed_height'].url} />
           </li>
         )}

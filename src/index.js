@@ -5,6 +5,8 @@ const plugin = ({term, display, actions}) => {
   
   term = term.toLowerCase();
 
+  console.log(term);
+
   if (term.startsWith('giphy')) {
 
     const [, ...remain] = term.split(' ');
