@@ -1,5 +1,5 @@
 import React from 'react';
-import Preview from './preview';
+import App from './components/app/app';
 
 const plugin = ({term, display, actions}) => {
   
@@ -15,7 +15,7 @@ const plugin = ({term, display, actions}) => {
     display({
       title: 'Giphy search',
       onSelect: () => {},
-      getPreview: () => <Preview searchTerm={searchTerm} /> 
+      getPreview: () => <App searchTerm={searchTerm} /> 
     });
   }
 };

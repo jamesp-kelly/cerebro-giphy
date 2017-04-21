@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getTrending, search } from './api';
+import Bricks from 'bricks.js';
+import { getTrending, search } from '../../api';
+import styles from '../../styles.css';
+import Grid from '../grid/grid';
 
-export default class Preview extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,35 +14,19 @@ export default class Preview extends Component {
   }
 
   componentDidMount() {
-    getTrending().then(results => {
-      this.setState({ gifs: results.data});
-    });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.searchTerm !== this.props.searchTerm) {
       search(this.props.searchTerm).then(results => {
         this.setState({ gifs: results.data});
+
       });
     }
   }
 
   render() {
-    if (!this.state.gifs) {
-      return <div>Please wait...</div>;
-    }
-
     const gifs = this.state.gifs;
-
-    return (
-      <ul>
-        {gifs.map((gif, index) => 
-          <li key={index}>
-            <img src={gif.images['fixed_height'].url} />
-          </li>
-        )}
-        
-      </ul>
-    )
+    return <Grid gifs={gifs}></Grid>;
   }
 }

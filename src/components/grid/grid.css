@@ -1,0 +1,5 @@
+.grid {
+  height: 0px !important;
+  position: static !important;
+  width: 400px;
+}
