@@ -8,7 +8,11 @@ class Grid extends Component {
     super(props);
     this.bricks = null;
     this.sizes = [
-      {mq: '768px', columns: 3, gutter: 10},
+      { columns: 2, gutter: 10 },
+      {mq: '900px', columns: 3, gutter: 10 },
+      {mq: '1100px', columns: 4, gutter: 10 },
+      {mq: '1300px', columns: 5, gutter: 10 },
+      {mq: '1600px', columns: 6, gutter: 10 }
     ];
   }
 
